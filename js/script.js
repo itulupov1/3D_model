@@ -93,9 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			} else {
 				clearInterval(animInterval);
 			}
-			console.log(count);
 		};
-		console.log(count*1.5);
 	};
 	togglePopUp();
 
