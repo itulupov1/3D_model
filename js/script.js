@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		updateClock();
 	};
 
-	countTimer(`05 september 2020`);
+	countTimer(`06 september 2020`);
 
 	//menu
 	const toggleMenu = () => {
