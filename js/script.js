@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		popupBtn.forEach((elem) => {
 			elem.addEventListener('click', () => {
 				popup.style.display = 'block';
-				if (screen.width > 768) {
+				if (document.documentElement.clientWidth > 768) {
 					popupContent.style.left = `-40%`;
 					animInterval = setInterval(animatePopUp, 17);
 				}
@@ -83,6 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			popup.style.display = 'none';
 			clearInterval(animInterval);
 			count = 0;
+			popupContent.style.left = '';
 		});
 
 		// animate popup
