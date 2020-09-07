@@ -71,9 +71,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		popupBtn.forEach((elem) => {
 			elem.addEventListener('click', () => {
-				togglePopUp();
 				popup.style.display = 'block';
-				if (screen.width > 768) {
+				if (document.documentElement.clientWidth > 768) {
 					popupContent.style.left = `-40%`;
 					animInterval = setInterval(animatePopUp, 17);
 				}
