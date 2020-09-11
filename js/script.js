@@ -252,6 +252,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 	slider();
 
+	// swap image mouseOver
 	const swapImage = () => {
 		const imgContainer = document.querySelector('#command');
 
@@ -275,6 +276,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 	swapImage();
 
+	// numbs only for calc
 	const calcBlock = () => {
 		const block = document.querySelector('.calc-block');
 
