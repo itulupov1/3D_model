@@ -17,13 +17,13 @@ window.addEventListener('DOMContentLoaded', () => {
 			return {timeRemaining, hours, minutes, seconds};
 		};
 
-		const addNullToTimer = (times) => {
+		const addNullToTimer = times => {
 			if (times.toString().length === 1) {
 				times = `0${times}`;
 			}
 			return times;
 		};
-		
+
 		const updateClock = () => {
 			const timer = getTimeRemaining();
 
@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		updateClock();
 	};
 
-	countTimer(`13 september 2020`);
+	countTimer(`14 september 2020`);
 
 	//menu
 	const toggleMenu = () => {
@@ -53,10 +53,10 @@ window.addEventListener('DOMContentLoaded', () => {
 			menu.classList.toggle('active-menu');
 		};
 
-		menu.addEventListener('click', () => {
-			let target = event.target;
+		menu.addEventListener('click', event => {
+			const target = event.target;
 
-			if (target.tagName === 'A'){
+			if (target.tagName === 'A') {
 				handlerMenu();
 			}
 		});
@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		let count = 0;
 		let animInterval;
 
-		popupBtn.forEach((elem) => {
+		popupBtn.forEach(elem => {
 			elem.addEventListener('click', () => {
 				popup.style.display = 'block';
 				if (document.documentElement.clientWidth > 768) {
@@ -81,11 +81,11 @@ window.addEventListener('DOMContentLoaded', () => {
 				}
 			});
 		});
-		
-		popup.addEventListener('click', (event) => {
+
+		popup.addEventListener('click', event => {
 			let target = event.target;
 
-			if (target.classList.contains('popup-close')){
+			if (target.classList.contains('popup-close')) {
 				popup.style.display = 'none';
 				clearInterval(animInterval);
 				count = 0;
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		const animatePopUp = () => {
 			count++;
 			if (count < 39 / 1.5) {
-				popupContent.style.left = `${count*1.5}%`;
+				popupContent.style.left = `${count * 1.5}%`;
 			} else {
 				clearInterval(animInterval);
 			}
@@ -119,9 +119,9 @@ window.addEventListener('DOMContentLoaded', () => {
 			tab = tabHeader.querySelectorAll('.service-header-tab'),
 			tabContent = document.querySelectorAll('.service-tab');
 
-		const toggleTabContent = (index) => {
-			for (let i = 0; i < tabContent.length; i++){
-				if (index === i){
+		const toggleTabContent = index => {
+			for (let i = 0; i < tabContent.length; i++) {
+				if (index === i) {
 					tab[i].classList.add('active');
 					tabContent[i].classList.remove('d-none');
 				} else {
@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			}
 		};
 
-		tabHeader.addEventListener('click', (event) => {
+		tabHeader.addEventListener('click', event => {
 			let target = event.target;
 			target = target.closest('.service-header-tab');
 
@@ -148,11 +148,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//slider
 	const slider = () => {
-		
+
 		const slide = document.querySelectorAll('.portfolio-item'),
-			btn = document.querySelectorAll('.portfolio-btn'),
 			slider = document.querySelector('.portfolio-content');
-		
+
 		let currentSlide = 0,
 			interval;
 
@@ -186,7 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			prevSlide(slide, currentSlide, 'portfolio-item-active');
 			prevSlide(dot, currentSlide, 'dot-active');
 			currentSlide++;
-			if (currentSlide >= slide.length){
+			if (currentSlide >= slide.length) {
 				currentSlide = 0;
 			}
 			nextSlide(slide, currentSlide, 'portfolio-item-active');
@@ -200,26 +199,26 @@ window.addEventListener('DOMContentLoaded', () => {
 		const stopSlide = () => {
 			clearInterval(interval);
 		};
-		
-		slider.addEventListener('click', (event) => {
+
+		slider.addEventListener('click', event => {
 			event.preventDefault();
 
-			let target = event.target;
+			const target = event.target;
 
-			if (!target.matches('.portfolio-btn, .dot')){
+			if (!target.matches('.portfolio-btn, .dot')) {
 				return 0;
 			}
 
 			prevSlide(slide, currentSlide, 'portfolio-item-active');
 			prevSlide(dot, currentSlide, 'dot-active');
 
-			if (target.matches('#arrow-right')){
+			if (target.matches('#arrow-right')) {
 				currentSlide++;
-			} else if (target.matches('#arrow-left')){
+			} else if (target.matches('#arrow-left')) {
 				currentSlide--;
-			} else if (target.matches('.dot')){
+			} else if (target.matches('.dot')) {
 				dot.forEach((elem, index) => {
-					if (elem === target){
+					if (elem === target) {
 						currentSlide = index;
 					}
 				});
@@ -234,14 +233,14 @@ window.addEventListener('DOMContentLoaded', () => {
 			nextSlide(dot, currentSlide, 'dot-active');
 		});
 
-		slider.addEventListener('mouseover', (event) => {
-			if (event.target.matches('.portfolio-btn') || 
+		slider.addEventListener('mouseover', event => {
+			if (event.target.matches('.portfolio-btn') ||
 			event.target.matches('.dot')) {
 				stopSlide();
 			}
 		});
 
-		slider.addEventListener('mouseout', (event) => {
+		slider.addEventListener('mouseout', event => {
 			if (event.target.matches('.portfolio-btn') ||
 				event.target.matches('.dot')) {
 				startSlide();
@@ -256,7 +255,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	const swapImage = () => {
 		const imgContainer = document.querySelector('#command');
 
-		imgContainer.addEventListener('mouseover', (event) => {
+		imgContainer.addEventListener('mouseover', event => {
 			const target = event.target;
 
 			if (target.classList.contains('command__photo')) {
@@ -265,7 +264,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 			}
 		});
-		imgContainer.addEventListener('mouseout', (event) => {
+		imgContainer.addEventListener('mouseout', event => {
 			const target = event.target;
 
 			if (target.classList.contains('command__photo')) {
@@ -280,17 +279,17 @@ window.addEventListener('DOMContentLoaded', () => {
 	const calcBlock = () => {
 		const block = document.querySelector('.calc-block');
 
-		block.addEventListener('input', (event) => {
+		block.addEventListener('input', event => {
 			const target = event.target;
 
-			if (target.tagName === 'INPUT'){
+			if (target.tagName === 'INPUT') {
 				target.value = target.value.replace(/\D/i, '');
 			}
 		});
 	};
 	calcBlock();
 
-	// calculator 
+	// calculator
 	const calc = (price = 100) => {
 		const calckBlock = document.querySelector('.calc-block'),
 			calcType = document.querySelector('.calc-type'),
@@ -323,7 +322,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			totalValue.textContent = total;
 		};
 
-		calckBlock.addEventListener('change', (event) => {
+		calckBlock.addEventListener('change', event => {
 			const target = event.target;
 			if (target.matches('select') || target.matches('input')) {
 				countSum();
@@ -331,5 +330,69 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	};
 	calc(100);
+
+	//send ajax form
+	const sendForm = () => {
+		const errorMessage = 'Что-то пошло не так...';
+		const loadMessage = 'Загрузка...';
+		const successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
+
+		const statusMessage = document.createElement('div');
+		statusMessage.style.cssText = 'font-size: 2rem';
+
+		document.body.addEventListener('submit', event => {
+			event.preventDefault();
+			const form = document.getElementById(`${event.target.id}`);
+			if (event.target.id === 'form3') {
+				statusMessage.style.color = '#fff';
+			}
+			form.append(statusMessage);
+			statusMessage.textContent = loadMessage;
+
+			const formData = new FormData(form);
+			const body = {};
+			formData.forEach((val, key) => {
+				body[key] = val;
+			});
+			postData(body, () => {
+				statusMessage.textContent = successMessage;
+				form.querySelectorAll('input').forEach(elem => {
+					elem.value = '';
+				});
+			}, error => {
+				statusMessage.textContent = errorMessage;
+				console.error(error);
+			});
+		});
+
+		document.body.addEventListener('input', event => {
+			const target = event.target;
+
+			if (target.type === 'tel') {
+				target.value = target.value.replace(/[^\d+]/g, '');
+			} else if (target.type === 'text' || target.name === 'user_message') {
+				target.value = target.value.replace(/[^а-яё\s]/ig, '');
+			}
+		});
+
+		const postData = (body, outputData, errorData) => {
+			const request = new XMLHttpRequest();
+			request.addEventListener('readystatechange', () => {
+				if (request.readyState !== 4) {
+					return;
+				}
+				if (request.status === 200) {
+					outputData();
+				} else {
+					errorData(request.status);
+				}
+			});
+			request.open('POST', './server.php');
+			request.setRequestHeader('Content-Type', 'application/json');
+			request.send(JSON.stringify(body));
+		};
+	};
+	sendForm();
+
 });
 
