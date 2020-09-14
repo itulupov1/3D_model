@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		updateClock();
 	};
 
-	countTimer(`14 september 2020`);
+	countTimer(`16 september 2020`);
 
 	//menu
 	const toggleMenu = () => {
@@ -340,7 +340,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		const statusMessage = document.createElement('div');
 		statusMessage.style.cssText = 'font-size: 2rem';
 
-		document.body.addEventListener('submit', event => {
+		const submitBtn = event => {
 			event.preventDefault();
 			const form = document.getElementById(`${event.target.id}`);
 			if (event.target.id === 'form3') {
@@ -363,13 +363,17 @@ window.addEventListener('DOMContentLoaded', () => {
 				statusMessage.textContent = errorMessage;
 				console.error(error);
 			});
-		});
+		};
+		document.body.addEventListener('submit', submitBtn);
 
 		document.body.addEventListener('input', event => {
 			const target = event.target;
 
 			if (target.type === 'tel') {
 				target.value = target.value.replace(/[^\d+]/g, '');
+				if (target.value.match(/[+]\d{11}|[\d]{11}/g) !== null) {
+					target.value = target.value.match(/[+]\d{11}|[\d]{11}/g);
+				}
 			} else if (target.type === 'text' || target.name === 'user_message') {
 				target.value = target.value.replace(/[^а-яё\s]/ig, '');
 			}
