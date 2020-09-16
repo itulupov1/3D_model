@@ -360,7 +360,8 @@ window.addEventListener('DOMContentLoaded', () => {
 					form.querySelectorAll('input').forEach(elem => {
 						elem.value = '';
 					});
-				}, error => {
+				})
+				.catch(error => {
 					statusMessage.textContent = errorMessage;
 					console.error(error);
 				});
@@ -392,7 +393,7 @@ window.addEventListener('DOMContentLoaded', () => {
 					reject(request.status);
 				}
 			});
-			request.open('POST', './server.php');
+			request.open('POST', './server1.php');
 			request.setRequestHeader('Content-Type', 'application/json');
 			request.send(JSON.stringify(body));
 		});
