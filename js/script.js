@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		updateClock();
 	};
 
-	countTimer(`16 september 2020`);
+	countTimer(`18 september 2020`);
 
 	//menu
 	const toggleMenu = () => {
@@ -354,15 +354,16 @@ window.addEventListener('DOMContentLoaded', () => {
 			formData.forEach((val, key) => {
 				body[key] = val;
 			});
-			postData(body, () => {
-				statusMessage.textContent = successMessage;
-				form.querySelectorAll('input').forEach(elem => {
-					elem.value = '';
+			postData(body)
+				.then(() => {
+					statusMessage.textContent = successMessage;
+					form.querySelectorAll('input').forEach(elem => {
+						elem.value = '';
+					});
+				}, error => {
+					statusMessage.textContent = errorMessage;
+					console.error(error);
 				});
-			}, error => {
-				statusMessage.textContent = errorMessage;
-				console.error(error);
-			});
 		};
 		document.body.addEventListener('submit', submitBtn);
 
@@ -379,24 +380,23 @@ window.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 
-		const postData = (body, outputData, errorData) => {
+		const postData = body => new Promise((resolve, reject) => {
 			const request = new XMLHttpRequest();
 			request.addEventListener('readystatechange', () => {
 				if (request.readyState !== 4) {
 					return;
 				}
 				if (request.status === 200) {
-					outputData();
+					resolve();
 				} else {
-					errorData(request.status);
+					reject(request.status);
 				}
 			});
 			request.open('POST', './server.php');
 			request.setRequestHeader('Content-Type', 'application/json');
 			request.send(JSON.stringify(body));
-		};
+		});
 	};
 	sendForm();
 
 });
-
