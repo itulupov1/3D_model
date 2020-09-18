@@ -19,7 +19,7 @@ import calc from './modules/calc';
 import sendForm from './modules/sendForm';
 
 // Timer
-countTimer(`18 september 2020`);
+countTimer(`19 september 2020`);
 //menu
 toggleMenu();
 //popup

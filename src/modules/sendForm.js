@@ -29,6 +29,9 @@ const sendForm = () => {
 				form.querySelectorAll('input').forEach(elem => {
 					elem.value = '';
 				});
+				setTimeout(() => {
+					statusMessage.textContent = '';
+				}, 3000);
 			})
 			.catch(error => {
 				statusMessage.textContent = errorMessage;
@@ -45,8 +48,10 @@ const sendForm = () => {
 			if (target.value.match(/[+]\d{11}|[\d]{11}/g) !== null) {
 				target.value = target.value.match(/[+]\d{11}|[\d]{11}/g);
 			}
-		} else if (target.name === 'user_name' || target.name === 'user_message') {
+		} else if (target.name === 'user_name') {
 			target.value = target.value.replace(/[^а-яё\s]/ig, '');
+		} else if (target.name === 'user_message') {
+			target.value = target.value.replace(/[^а-яё\s\W]/ig, '');
 		}
 	});
 
